@@ -2,3 +2,10 @@
 data/
 multi_filter_plots/
 single_filter_plots/
+
+# IntelliJ
+.idea/
+**.iml
+
+# Python build artifacts
+_pycache_/
