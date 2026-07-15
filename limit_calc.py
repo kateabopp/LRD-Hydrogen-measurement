@@ -4,16 +4,6 @@ import astropy.constants
 from astropy.constants import c
 
 
-# This is your range of wavelengths calculated in the previous step. (Kelcey doc)
-'''Wave_array= [0.49882810, 1.13207095, 0.94523940, 0.80584327, 1.08391650,0.89721000] 
-# This array is the values for the flux error at all the points in your wavelength array. (Kelcey doc)
-Error_array = []
-
-D_lambda = np.median (np.diff(Wave_array))
-Integrated_flux_sigma =D_lambda * np.sqr(np.sum(Error_array**2))
-Three_sigma_limit = 3*Integrated_flux_sigma
-'''
-
 z_list = [5.666, 5.276, 6.684, 4.953, 5.287, 5.239]
 # 3.681, 4.542, 3.850, 5.682
 fwhm_list = [1134, 2423, 2477, 1636, 2324, 1909]

@@ -3,12 +3,12 @@
 # find units - done
 # add h gamma line using observed wave - done
 # Add lines from sigma - done
-# Find flux error from files - STILL NEEDED
+# Find flux error from files - done
 # Range of wave is half sigma to half sigma
 # Write summary of what I did in part 1 and 2 - done
 # Find lower limits
-# get wavelength array
-# get error array
+# get wavelength array - done
+# get error array - done
 
 import numpy as np
 import astropy.io.fits as fits
@@ -47,6 +47,7 @@ for file_path in fits_files:
 # if not found in previous dictionary
     if matched_id is None:
         print(f"Skipping {file_path.name} (Not found in dictionary)")
+        print('---')
         continue
 
     z, sigma = galaxy_data[matched_id]
@@ -71,11 +72,22 @@ for file_path in fits_files:
     # add H-gamma
     plt.axvline(x=h_gamma_obs, color='blue', linestyle='--', linewidth=1.5, label=r'H$\gamma$ Line')
 
-    # find range (x-axis)
+    # find sigma range (x-axis, blue shaded area)
     wave_min = h_gamma_obs - (0.5 * sigma)
-    print(wave_min)
+    # print(wave_min)
     wave_max = h_gamma_obs + (0.5 * sigma)
-    print(wave_max)
+    # print(wave_max)
+
+    # gets range of wavelengths from min to max of blue shaded
+    window_mask = (wavelength >= wave_min) & (wavelength <= wave_max)
+
+    wave_array = wavelength[window_mask]
+    error_array = flux_error[window_mask]
+
+    D_lambda = np.median(np.diff(wave_array))
+    integrated_flux_sigma = D_lambda * np.sqrt(np.sum(error_array ** 2))
+    Three_sigma_limit = 3 * integrated_flux_sigma
+
 
     # shade place between -0.5 sigma and +0.5 sigm
     plt.axvspan(wave_min, wave_max, color='blue', alpha=0.15, label=r'Sigma wavelength range')
@@ -92,6 +104,6 @@ for file_path in fits_files:
     plt.savefig(final_folder / output_image_name, dpi=300)
     plt.close()
    # print(repr(hdul[1].header))
-    print('-----')
-    print(f'For {output_image_name}, Flux Error Median: {flux_error_med}')
-    print('-----')
+
+    print(f'For fits {output_image_name} | Lower flux limit is {integrated_flux_sigma} Janskys')
+    print('---')
