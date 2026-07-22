@@ -1,3 +1,5 @@
+# Calculates sigma and observed wavelength using given FWHMs
+
 import numpy as np
 import astropy.units as u
 import astropy.constants

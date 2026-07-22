@@ -1,4 +1,4 @@
-# Plots spectra with emission highlighted - measures H-gamma and OIII
+# Finds ratio of OIII/Hg, plots results on a histogram in log scale
 
 import numpy as np
 from astropy.io import fits
@@ -6,7 +6,6 @@ import glob2 as glob
 import lime
 import matplotlib.pyplot as plt
 import astropy.units as u
-
 
 data_folder = 'data/reextrac2/'
 output_folder = 'data/wavelength_results'
@@ -23,6 +22,8 @@ redshifts = {
     's000033842': 5.287,
     's000169045': 5.239
 }
+
+all_ratios = []
 
 for file_address in glob.glob(data_folder + '*.fits'):
     print(file_address)
@@ -47,43 +48,30 @@ for file_address in glob.glob(data_folder + '*.fits'):
         profile_flux_gamma = spec.frame.loc[['H1_4340A'], ['profile_flux']].iloc[0, 0]
         profile_flux_oxy = spec.frame.loc[['O3_4363A'], ['profile_flux']].iloc[0, 0]
 
+        ratio = profile_flux_oxy / profile_flux_gamma
+        print(f'For fits: {file_address}, Gamma emission is: {profile_flux_gamma}, Oxygen 3 emission is: {profile_flux_oxy}')
+        print(f'Ratio (OIII/Hg) is: {ratio}')
+        all_ratios.append(ratio)
+
     except Exception as e:
         print(e)
 
+# cleans ratios, no nan
+clean_ratios = np.array(all_ratios)
+clean_ratios = clean_ratios[(np.isfinite(clean_ratios)) & (clean_ratios > 0)]
 
-    spec.plot.bands(rest_frame=True, show_cont=False)
+log_ratios = np.log10(clean_ratios)
 
-    rest_wave_o3 = 0.43632  # Rest wavelength of [OIII] in microns
-    o3_obs = rest_wave_o3 * (1 + z_val)
+# Checks the ratios
+print(all_ratios)
+print(log_ratios)
 
-    # Create canvas
-    plt.figure(figsize=(10, 5))
+plt.hist(log_ratios, bins='auto', edgecolor='black')
 
-    plt.plot(wavelength_microns, flux_array, drawstyle='steps-mid', color='crimson', label='LRD Spectrum')
+# labels
+plt.xlabel(r'$\log_{10}([\mathrm{OIII}] / \mathrm{Hg})$')
+plt.ylabel('Count')
+plt.show()
 
-    # Highlight [OIII] in the observed frame
-    plt.axvline(x=o3_obs, color='gold', linestyle='--', linewidth=2, label='[OIII] Line')
-
-    output_name = file_address.split('_')[2]
-    plt.title(f'Spectrum: {output_name}')
-    plt.xlabel('Wavelength')
-    plt.ylabel('Flux')
-    plt.grid(True, linestyle='--', alpha=0.5)
-    plt.legend()
-
-    output_name = f'{file_address}_O3_plot.png'
-
-    # saves plot
-    plt.savefig(output_name, dpi=300)
-    plt.close()
-
-    ### Graphs like the wavelength_results graphs
-    plt.xlabel('Wavelength')
-    plt.ylabel('Flux')
-    plt.grid(True, linestyle='--', alpha=0.5)
-    plt.legend()
-
-    output_name = 'test.png'
-    plt.savefig(output_name, dpi=300)
-
-    plt.close()
+plt.savefig(f'test_histo.png', dpi=300)
+plt.close()

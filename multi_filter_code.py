@@ -1,3 +1,5 @@
+# Plots the spectra for two filters, 235 and 395
+
 import astropy.io.fits as fits
 import matplotlib.pyplot as plt
 from pathlib import Path

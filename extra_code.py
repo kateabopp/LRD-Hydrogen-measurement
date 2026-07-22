@@ -112,3 +112,107 @@ output_name =(f"fwhm_graph.png")
 plt.savefig(output_name, dpi=300)
 '''
 
+# This program plots the final graph similar to the paper using the SMC line - it doesn't work correctly though
+
+'''import matplotlib.pyplot as plt
+import numpy as np
+import astropy.units as u
+from pathlib import Path
+from dust_extinction.averages import G24_SMCAvg
+
+# Sends final result to correct directory
+current_folder = Path(__file__).parent
+data_folder = current_folder / 'data' / 'reextrac2'
+final_folder = current_folder / 'final_plots'
+
+fits_files = list(data_folder.glob('*.fits'))
+
+# PLACEHOLDERS I USED TO TEST OUT - replac with real data later
+log_HaHb_narrow = np.array([])
+log_HaHb_narrow_err = np.array([])
+
+log_HgHa_narrow = np.array([-0.78, -0.82, -0.75, -0.68, -0.71, -0.65])
+log_HgHa_narrow_err = np.array([0.03, 0.02, 0.04, 0.03, 0.02, 0.03])
+
+# The broad limit I found - 3 integrated sigma - janskys
+broad_Hg_limit = np.array([9.2719258e-09, 8.0836847e-09, 1.47916168e-08, 1.109627e-08, 1.4782255e-08, 7.9090569e-09])
+
+redshifts = np.array([5.666, 5.276, 6.684, 4.953, 5.287, 5.239])
+
+# Broad h-alphas and h-betas from paper - which is in erg/s/cm^2
+broad_Ha_flux = np.array([1.09e-18, 1.50e-16, 4.63e-17, 9.48e-18, 1.12e-17, 1.05e-17]) * (u.erg / (u.s * u.cm**2))
+broad_Hb_flux = np.array([3.81e-19, 5.21e-17, 1.55e-17, 3.10e-18, 3.86e-18, 3.44e-18])
+
+# Gets correct units
+wave_Hg_obs_meters = (4341.7 * 1e-10) * (1 + redshifts)
+frequency_Hg = 3e8 / wave_Hg_obs_meters
+
+# Converts Janskys to erg/s/cm^2
+broad_Hg_limit_cgs = broad_Hg_limit * 1e-23 * frequency_Hg
+
+
+# h-gamma/h-alpha ratio for the broad
+log_HgHa_broad = np.log10(broad_Hg_limit / broad_Ha_flux)
+
+# h-alpha/h-beta ratio for the broad
+log_HaHb_broad = np.log10(broad_Ha_flux / broad_Hb_flux)
+
+
+# ALL AFTER THIS WORKS
+
+# Found in OCEANS paper
+intrinsic_HaHb = 2.86
+intrinsic_HgHa = 0.163
+
+log_HaHb_intrinsic = np.log10(intrinsic_HaHb)
+log_HgHa_intrinsic = np.log10(intrinsic_HgHa)
+
+# Constants in Angstroms
+wave_Ha = 6565 * u.AA
+wave_Hb = 4861 * u.AA
+wave_Hg = 4341 * u.AA
+
+smc = G24_SMCAvg()
+k_Ha = smc(wave_Ha)
+k_Hb = smc(wave_Hb)
+k_Hg = smc(wave_Hg)
+
+Av = np.linspace(0, 8, 50)
+
+# SMC calc
+y_line = log_HaHb_intrinsic - 0.4 * Av * (k_Ha - k_Hb)
+x_line = log_HgHa_intrinsic - 0.4 * Av * (k_Hg - k_Ha)
+
+# Should add other laws later!
+# LMC calc
+
+# Maybe Milky Way calc?
+
+# Plots on graph
+plt.figure(figsize=(8, 6))
+
+# Narrow points are squares
+plt.errorbar(log_HgHa_narrow, log_HaHb_narrow, xerr=log_HgHa_narrow_err, yerr=log_HaHb_narrow_err, fmt='s', color='blue', label='Narrow Components', zorder=3)
+
+# Broad points are circles
+# Fix xuplims
+plt.errorbar(log_HgHa_broad, log_HaHb_broad, xerr=0.08, yerr=0.08, xuplims=True, fmt='o', color='purple', label='Broad Components', zorder=3)
+
+plt.plot(x_line, y_line, label='SMC Dust Law', color='red', linestyle='--', linewidth=2)
+
+# Vertical shaded band for H-gamma/H-alpha
+plt.axvline(x=log_HgHa_intrinsic, color='grey', alpha=0.50, linewidth=12, zorder=1)
+# Horizontal shaded band for H-alpha/H-beta
+plt.axhline(y=log_HaHb_intrinsic, color='grey', alpha=0.50, linewidth=12, zorder=1)
+
+plt.xlabel(r'$\log_{10}(\text{H}\gamma/\text{H}\alpha)$')
+plt.ylabel(r'$\log_{10}(\text{H}\alpha/\text{H}\beta)$')
+plt.legend(loc='best')
+plt.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+
+plt.savefig(final_folder, dpi=300)
+plt.close()
+'''
