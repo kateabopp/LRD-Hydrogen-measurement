@@ -2,16 +2,19 @@
 data/
 multi_filter_plots/
 single_filter_plots/
-extra_code.py/
-narrow_component_code.py/
-final_plot_code.py/
-limit_calc.py/
-lime_plot.py/
-multi_filter_code.py/
 
-# IntelliJ
+# Python scripts to ignore
+extra_code.py
+narrow_component_code.py
+final_plot_code.py
+limit_calc.py
+lime_plot.py
+multi_filter_code.py
+
+
+# IntelliJ / PyCharm
 .idea/
-**.iml
+*.iml
 
 # Python build artifacts
-_pycache_/
+__pycache__/
