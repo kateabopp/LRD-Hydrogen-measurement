@@ -2,6 +2,7 @@
 data/
 multi_filter_plots/
 single_filter_plots/
+final_plots/
 
 # Python scripts to ignore
 extra_code.py

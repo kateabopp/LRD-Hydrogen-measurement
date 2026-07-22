@@ -83,7 +83,6 @@ for file_address in glob.glob(data_folder + '*.fits'):
     plt.grid(True, linestyle='--', alpha=0.5)
     plt.legend()
 
-    output_name = 'test.png'
     plt.savefig(output_name, dpi=300)
 
     plt.close()

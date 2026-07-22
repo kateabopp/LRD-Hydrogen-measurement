@@ -1,4 +1,4 @@
-# Generates plot with spectra, H-gamma line, and sigma range. Also calculates the lower limit of the flux.
+# Generates plot with spectra, H-gamma line. Also calculates the lower limit of the flux.
 
 # print(repr(hdul[1].header)) - gets info on fits header - need it for error range
 
