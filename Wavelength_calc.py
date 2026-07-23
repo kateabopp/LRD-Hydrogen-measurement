@@ -46,7 +46,11 @@ for file_address in glob.glob(data_folder + '*.fits'):
     try:
         profile_flux_gamma = spec.frame.loc[['H1_4340A'], ['profile_flux']].iloc[0, 0]
         profile_flux_oxy = spec.frame.loc[['O3_4363A'], ['profile_flux']].iloc[0, 0]
-
+        print(profile_flux_gamma)
+        print(profile_flux_oxy)
+        ratio = profile_flux_oxy / profile_flux_gamma
+        log_ratios = np.log10(ratio)
+        print(f'Ratio is: {log_ratios}')
     except Exception as e:
         print(e)
 

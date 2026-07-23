@@ -61,16 +61,19 @@ clean_ratios = np.array(all_ratios)
 clean_ratios = clean_ratios[(np.isfinite(clean_ratios)) & (clean_ratios > 0)]
 
 log_ratios = np.log10(clean_ratios)
+clean_log_ratios = log_ratios[(log_ratios < 1)]
 
 # Checks the ratios
 print(all_ratios)
+print(clean_ratios)
 print(log_ratios)
+print(clean_log_ratios)
 
-plt.hist(log_ratios, bins=8, edgecolor='black')
+plt.hist(clean_log_ratios, bins=8, edgecolor='black')
 
-plt.axvspan(xmin=-0.43933269, xmax=-0.25756554, color='red', alpha=0.3, label='BLAGN Region')
-plt.axvline(x=-0.37892762, color='yellow', linestyle='--', linewidth=2, label='Composite Region')
-plt.axvline(x=-1.64839692, color='green', linestyle='--', linewidth=2, label='SF Region')
+plt.axvspan(xmin=-0.43933269, xmax=1.0, color='red', alpha=0.3, label='BLAGN Region')
+plt.axvspan(xmin=-0.43933269, xmax=-0.37892762, color='yellow', alpha=0.2, linewidth=2, label='Composite Region')
+plt.axvspan(xmin=-1.64839692, xmax=-0.37892762, color='green', alpha=0.2, linewidth=2, label='SF Region')
 
 # labels
 plt.xlabel(r'$\log_{10}([\mathrm{OIII}] / \mathrm{Hg})$')
