@@ -10,7 +10,6 @@ final_plot_code.py
 lime_plot.py
 multi_filter_code.py
 
-
 # IntelliJ / PyCharm
 .idea/
 *.iml
