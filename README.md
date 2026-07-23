@@ -19,6 +19,9 @@ The goal is to figure out what Little Red Dots are by taking these measurements.
   This program does multiple things. However, only some is actually important to the overall project. It plots individual spectra 
   for each of the files. The spectra in this program focuses on the H-gamma emission. It highlights the specific area of the
   H-gamma emission in blue.
+### fake_data_sample.py
+  This program generates a fits file using fake data. It can be used in place of the authentic data used in this project that is 
+  not available to the public yet.
 
 ## Installation
 This project was developed in PyCharm using Python.
