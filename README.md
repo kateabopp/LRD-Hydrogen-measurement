@@ -8,17 +8,17 @@ The goal is to figure out what Little Red Dots are by taking these measurements.
 ## Scripts
 
 ### ratio_histo_calc.py
-    This program calculates the ratio of OIII by Hg. It incorporates the redshift of each file and the measurements of each emission 
-    taken by LiME to perform the calculation. After taking the measurements and printing them out, it plots a histogram of the data 
-    using matplotlib's plt.hist() function.
+  This program calculates the ratio of OIII by Hg. It incorporates the redshift of each file and the measurements of each emission 
+  taken by LiME to perform the calculation. After taking the measurements and printing them out, it plots a histogram of the data 
+  using matplotlib's plt.hist() function.
 ### Wavelength_calc.py
-    This program measures the emissions lines of H-gamma and OIII. Using LiME, it incorporates the redshift for each individual file
-    and plots a spectra. The spectra in this program focuses on the OIII emission. It highlights the specific area of the OIII
-    emission in yellow.
+  This program measures the emissions lines of H-gamma and OIII. Using LiME, it incorporates the redshift for each individual file
+  and plots a spectra. The spectra in this program focuses on the OIII emission. It highlights the specific area of the OIII
+  emission in yellow.
 ### single_filter_code.py
-      This program does multiple things. However, only some is actually important to the overall project. It plots individual spectra 
-      for each of the files. The spectra in this program focuses on the H-gamma emission. It highlights the specific area of the
-      H-gamma emission in blue.
+  This program does multiple things. However, only some is actually important to the overall project. It plots individual spectra 
+  for each of the files. The spectra in this program focuses on the H-gamma emission. It highlights the specific area of the
+  H-gamma emission in blue.
 
 ## Installation
 This project was developed in PyCharm using Python.
