@@ -70,12 +70,13 @@ plt.hist(log_ratios, bins=8, edgecolor='black')
 
 plt.axvspan(xmin=-0.43933269, xmax=-0.25756554, color='red', alpha=0.3, label='BLAGN Region')
 plt.axvline(x=-0.37892762, color='yellow', linestyle='--', linewidth=2, label='Composite Region')
+plt.axvline(x=-1.64839692, color='green', linestyle='--', linewidth=2, label='SF Region')
 
 # labels
 plt.xlabel(r'$\log_{10}([\mathrm{OIII}] / \mathrm{Hg})$')
 plt.ylabel('Count')
 plt.legend(loc='upper right')
-plt.show()
 
 plt.savefig(f'test_histo.png', dpi=300)
+plt.show()
 plt.close()
