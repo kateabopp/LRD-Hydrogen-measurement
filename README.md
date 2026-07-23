@@ -1,7 +1,7 @@
 # Understanding H-gamma and OIII
 
-This project aims to measure and understand H-gamma and OIII emissions present in Little Red Dots(LRDs). By taking these measurements,
-the goal is to figure out what Little Red Dots are. 
+This project aims to measure and understand H-gamma and OIII emissions present in Little Red Dots(LRDs).
+The goal is to figure out what Little Red Dots are by taking these measurements. 
 
 > **_NOTE:_** The data used for this project is not available to the public.
 
