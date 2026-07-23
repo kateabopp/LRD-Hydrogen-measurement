@@ -19,7 +19,9 @@ The goal is to figure out what Little Red Dots are by taking these measurements.
   This program does multiple things. However, only some is actually important to the overall project. It plots individual spectra 
   for each of the files. The spectra in this program focuses on the H-gamma emission. It highlights the specific area of the
   H-gamma emission in blue.
-
+### lime_measuring.py
+  This program measures the OIII line using LiME. It is not entirely necessary to the project unless you just want to see how LiME is measuring the emission.
+  However, it does also print the measurements of both line emissions and finds the log ratio. it is not the main ratio calculation code.
 
 ## Installation
 This project was developed in PyCharm using Python.
