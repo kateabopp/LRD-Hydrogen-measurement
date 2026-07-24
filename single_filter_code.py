@@ -1,4 +1,4 @@
-# Generates plot with spectra, H-gamma line. Also calculates the lower limit of the flux.
+# Generates plot with spectra, H-gamma line and O3 line. Also calculates the lower limit of the flux.
 
 # print(repr(hdul[1].header)) - gets info on fits header - need it for error range
 
@@ -23,9 +23,12 @@ galaxy_data = {
 # Constant rest wave for H gamma in microns
 rest_wave = 0.43417
 
+# Rest wavelength of [OIII] in microns
+rest_wave_o3 = 0.43632
+
 current_folder = Path(__file__).parent
 data_folder = current_folder / 'data' / 'reextrac2'
-final_folder = current_folder / 'single_filter_plots'/ 'single_gamma'
+final_folder = current_folder / 'single_filter_plots'/ 'oxy3_hg_plots'
 
 fits_files = list(data_folder.glob('*.fits'))
 
@@ -45,6 +48,7 @@ for file_path in fits_files:
     z, sigma = galaxy_data[matched_id]
 
     h_gamma_obs = rest_wave * (1 + z)
+    o3_obs = rest_wave_o3 * (1 + z)
 
     # Open the FITS file
     hdul = fits.open(file_path)
@@ -63,9 +67,10 @@ for file_path in fits_files:
 
     # add H-gamma
     plt.axvline(x=h_gamma_obs, color='blue', linestyle='--', linewidth=1.5, label=r'H$\gamma$ Line')
+    plt.axvline(x=o3_obs, color='gold', linestyle='--', linewidth=1.5, label=r'O3 Line')
 
     # find sigma range (x-axis, blue shaded area)
-    wave_min = h_gamma_obs - (0.5 * sigma)
+    '''wave_min = h_gamma_obs - (0.5 * sigma)
     # print(wave_min)
     wave_max = h_gamma_obs + (0.5 * sigma)
     # print(wave_max)
@@ -86,7 +91,8 @@ for file_path in fits_files:
     three_sigma_limit = 3 * integrated_flux_sigma
 
     # shade place between -0.5 sigma and +0.5 sigma
-    #plt.axvspan(wave_min, wave_max, color='blue', alpha=0.15, label=r'Sigma wavelength range')
+    
+    '''#plt.axvspan(wave_min, wave_max, color='blue', alpha=0.15, label=r'Sigma wavelength range')
 
 
     plt.xlabel('Wavelength')
@@ -102,5 +108,5 @@ for file_path in fits_files:
     plt.close()
    # print(repr(hdul[1].header))
 
-    print(f'For fits {output_image_name} | Broad component upper limit is {three_sigma_limit}')
-    print('---')
+    #print(f'For fits {output_image_name} | Broad component upper limit is {three_sigma_limit}')
+    #print('---')
