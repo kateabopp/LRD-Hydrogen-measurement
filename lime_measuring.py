@@ -34,18 +34,10 @@ for file_address in data_folder.glob('*.fits'):
     spec.fit.continuum(degree_list=[3, 6, 6], emis_threshold=[3, 2, 1.5], plot_steps=True, log_scale=True)
     candidate_lines = spec.retrieve.lines_frame()
     matched_lines = spec.infer.peaks_troughs(candidate_lines, emission_type=True, sigma_threshold=3, plot_steps=True, log_scale=True)
-    spec.fit.bands('H1_4340A', cont_source='adjacent')
+    spec.fit.bands('H1_4340A_b', cont_source='adjacent')
 
     try:
-        profile_flux = spec.frame.loc[['H1_4340A'], ['profile_flux']].iloc[0, 0]
+        profile_flux = spec.frame.loc[['H1_4340A_b'], ['profile_flux']].iloc[0, 0]
         print(profile_flux)
     except:
         print("No profile flux found")
-
-'''From Ian: 
-spec.fit.continuum(degree_list=[3, 6, 6], emis_threshold=[3, 2, 1.5], plot_steps=True, log_scale=True)
-candidate_lines = spec.retrieve.lines_frame()
-matched_lines = spec.infer.peaks_troughs(candidate_lines, emission_type=True, sigma_threshold=3, plot_steps=True, log_scale=True)
-spec.fit.bands(line, cont_source='adjacent')
-spec.plot.bands(fname=image_name + "_fitted")
-'''
