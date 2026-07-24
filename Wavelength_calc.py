@@ -40,17 +40,21 @@ for file_address in glob.glob(data_folder + '*.fits'):
 
     spec.unit_conversion(wave_units_out='Angstrom', flux_units_out=u.erg/u.s/(u.cm**2))
 
-    spec.fit.bands('H1_4340A', cont_source='adjacent')
+    spec.fit.continuum(degree_list=[3, 6, 6], emis_threshold=[3, 2, 1.5], plot_steps=True, log_scale=True)
+    candidate_lines = spec.retrieve.lines_frame()
+    matched_lines = spec.infer.peaks_troughs(candidate_lines, emission_type=True, sigma_threshold=3, plot_steps=True, log_scale=True)
     spec.fit.bands('O3_4363A', cont_source='adjacent')
+
+    #spec.fit.bands('O3_4363A', cont_source='adjacent')
 
     try:
         profile_flux_gamma = spec.frame.loc[['H1_4340A'], ['profile_flux']].iloc[0, 0]
         profile_flux_oxy = spec.frame.loc[['O3_4363A'], ['profile_flux']].iloc[0, 0]
-        print(profile_flux_gamma)
-        print(profile_flux_oxy)
-        ratio = profile_flux_oxy / profile_flux_gamma
-        log_ratios = np.log10(ratio)
-        print(f'Ratio is: {log_ratios}')
+        #print(profile_flux_gamma)
+        #print(profile_flux_oxy)
+        #ratio = profile_flux_oxy / profile_flux_gamma
+        #log_ratios = np.log10(ratio)
+        #print(f'Ratio is: {log_ratios}')
     except Exception as e:
         print(e)
 
@@ -75,10 +79,9 @@ for file_address in glob.glob(data_folder + '*.fits'):
     plt.grid(True, linestyle='--', alpha=0.5)
     plt.legend()
 
-    output_name = f'{file_address}_O3_plot.png'
+    output_name = f'{file_address}_continuum_plot.png'
 
     # saves plot
-    plt.savefig(output_name, dpi=300)
     plt.close()
 
     ### Graphs like the wavelength_results graphs
