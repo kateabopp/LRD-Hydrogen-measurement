@@ -50,7 +50,11 @@ for file_address in glob.glob(data_folder + '*.fits'):
 
         ratio = profile_flux_oxy / profile_flux_gamma
         print(f'For fits: {file_address}, Gamma emission is: {profile_flux_gamma}, Oxygen 3 emission is: {profile_flux_oxy}')
-        print(f'Ratio (OIII/Hg) is: {ratio}')
+
+        # Print log ratio before plotting
+        log_ratio = np.log10(ratio)
+        print(f'Ratio (OIII/Hg) is: {log_ratio}')
+
         all_ratios.append(ratio)
 
     except Exception as e:
