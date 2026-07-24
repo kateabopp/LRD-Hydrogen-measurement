@@ -65,6 +65,10 @@ for file_path in fits_files:
     plt.figure(figsize=(10, 5))
     plt.plot(wavelength, flux, drawstyle='steps-mid', color='crimson', label='LRD Spectrum')
 
+    # Zooms in on the emission highlight
+    padding = 0.02
+    plt.xlim(h_gamma_obs - padding, o3_obs + padding)
+
     # add H-gamma
     plt.axvline(x=h_gamma_obs, color='blue', linestyle='--', linewidth=1.5, label=r'H$\gamma$ Line')
     plt.axvline(x=o3_obs, color='gold', linestyle='--', linewidth=1.5, label=r'O3 Line')
