@@ -1,4 +1,4 @@
-# Plots spectra with emission highlighted - measures H-gamma and OIII
+# measures and plots a graph of Hg
 
 import numpy as np
 from astropy.io import fits
@@ -10,6 +10,8 @@ import astropy.units as u
 
 data_folder = 'data/reextrac2/'
 output_folder = 'data/wavelength_results'
+
+hg_ratio = []
 
 redshifts = {
     's000001794': 3.681,
@@ -43,14 +45,15 @@ for file_address in glob.glob(data_folder + '*.fits'):
     spec.fit.continuum(degree_list=[3, 6, 6], emis_threshold=[3, 2, 1.5], plot_steps=True, log_scale=True)
     candidate_lines = spec.retrieve.lines_frame()
     matched_lines = spec.infer.peaks_troughs(candidate_lines, emission_type=True, sigma_threshold=3, plot_steps=True, log_scale=True)
-    spec.fit.bands('O3_4363A', cont_source='adjacent')
+    spec.fit.bands('H1_4340A_p-g_s-emi', cont_source='adjacent')
 
     #spec.fit.bands('O3_4363A', cont_source='adjacent')
 
     try:
-        profile_flux_gamma = spec.frame.loc[['H1_4340A'], ['profile_flux']].iloc[0, 0]
-        profile_flux_oxy = spec.frame.loc[['O3_4363A'], ['profile_flux']].iloc[0, 0]
-        #print(profile_flux_gamma)
+        profile_flux_gamma = spec.frame.loc[['H1_4340A_p-g_s-emi'], ['profile_flux']].iloc[0, 0]
+        #profile_flux_oxy = spec.frame.loc[['O3_4363A'], ['profile_flux']].iloc[0, 0]
+        profile_flux_gamma_log = np.log10(profile_flux_gamma)
+        hg_ratio.append(profile_flux_gamma_log)
         #print(profile_flux_oxy)
         #ratio = profile_flux_oxy / profile_flux_gamma
         #log_ratios = np.log10(ratio)
@@ -61,16 +64,16 @@ for file_address in glob.glob(data_folder + '*.fits'):
 
     spec.plot.bands(rest_frame=True, show_cont=False)
 
-    rest_wave_o3 = 0.43632  # Rest wavelength of [OIII] in microns
+    '''rest_wave_o3 = 0.43632  # Rest wavelength of [OIII] in microns
     o3_obs = rest_wave_o3 * (1 + z_val)
-
+'''
     # Create canvas
     plt.figure(figsize=(10, 5))
 
-    plt.plot(wavelength_microns, flux_array, drawstyle='steps-mid', color='crimson', label='LRD Spectrum')
+    #plt.plot(wavelength_microns, flux_array, drawstyle='steps-mid', color='crimson', label='LRD Spectrum')
 
     # Highlight [OIII] in the observed frame
-    plt.axvline(x=o3_obs, color='gold', linestyle='--', linewidth=2, label='[OIII] Line')
+    #plt.axvline(x=o3_obs, color='gold', linestyle='--', linewidth=2, label='[OIII] Line')
 
     output_name = file_address.split('_')[2]
     plt.title(f'Spectrum: {output_name}')
@@ -93,3 +96,7 @@ for file_address in glob.glob(data_folder + '*.fits'):
     plt.savefig(output_name, dpi=300)
 
     plt.close()
+
+# prints all of the measurements for Hg after log value is taken
+hg_ratio = np.array(hg_ratio)
+print(hg_ratio)
