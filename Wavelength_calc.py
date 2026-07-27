@@ -54,6 +54,8 @@ for file_address in glob.glob(data_folder + '*.fits'):
         #profile_flux_oxy = spec.frame.loc[['O3_4363A'], ['profile_flux']].iloc[0, 0]
         profile_flux_gamma_log = np.log10(profile_flux_gamma)
         hg_ratio.append(profile_flux_gamma_log)
+        hg_ratio =np.array(hg_ratio)
+        print(profile_flux_gamma_log)
         #print(profile_flux_oxy)
         #ratio = profile_flux_oxy / profile_flux_gamma
         #log_ratios = np.log10(ratio)
@@ -96,7 +98,3 @@ for file_address in glob.glob(data_folder + '*.fits'):
     plt.savefig(output_name, dpi=300)
 
     plt.close()
-
-# prints all of the measurements for Hg after log value is taken
-hg_ratio = np.array(hg_ratio)
-print(hg_ratio)
