@@ -126,6 +126,6 @@ plt.xlabel(r'$\log_{10}([\mathrm{OIII}] / \mathrm{Hg})$')
 plt.ylabel('Count')
 plt.legend(loc='upper right')
 
-plt.savefig(f'test_histo.png', dpi=300)
+plt.savefig(f'final_histogram.png', dpi=300)
 plt.show()
 plt.close()
