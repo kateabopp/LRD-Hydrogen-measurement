@@ -76,11 +76,6 @@ for filename in target_galaxies:
 
         target_data[galaxy_id] = {'log_val': log_ratio, 'error': log_ratio_err}
 
-        # debugging prints to figure out why the error is so large
-        print(f"\n--- For {galaxy_id} ---")
-        print(f"OIII Flux: {profile_flux_oxy:.2e} +/- {profile_flux_err_oxy:.2e}")
-        print(f"H-gamma Flux: {profile_flux_gamma:.2e} +/- {profile_flux_err_gamma:.2e}")
-        print(f"Final Log Error: {log_ratio_err:.4f}\n")
 
     except Exception as e:
         print(f"Error processing {filename}: {e}")
