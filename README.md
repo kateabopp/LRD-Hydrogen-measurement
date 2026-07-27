@@ -10,11 +10,11 @@ The goal is to figure out what Little Red Dots are by taking these measurements.
 ### ratio_histo_calc.py
   This program calculates the ratio of OIII by Hg. It incorporates the redshift of each file and the measurements of each emission 
   taken by LiME to perform the calculation. After taking the measurements and printing them out, it plots a histogram of the data 
-  using matplotlib's plt.hist() function.
+  using matplotlib's plt.hist() function. It also includes the error uncertainty calculations and plots them on the final histogram.
 ### Wavelength_calc.py
   This program measures the emissions lines of H-gamma and OIII. Using LiME, it incorporates the redshift for each individual file
-  and plots a spectra. The spectra in this program focuses on the OIII emission. It highlights the specific area of the OIII
-  emission in yellow.
+  and plots a spectra. Note that the measurements for H-gamma are far from accurate as the emission is too broad for LiME to accurately
+calculate.
 ### single_filter_code.py
   This program does multiple things. However, only some is actually important to the overall project. It plots individual spectra 
   for each of the files. The spectra in this program focuses on both the H-gamma and OIII emission. It highlights the specific area of the
@@ -24,7 +24,7 @@ The goal is to figure out what Little Red Dots are by taking these measurements.
   However, it does also print the measurements of both line emissions and finds the log ratio. it is not the main ratio calculation code.
 
 ## Installation
-This project was developed in PyCharm using Python.
+This project was developed in the Community Edition of PyCharm using Python.
 > **_NOTE:_** All the installations were done using the Terminal in Bash (pip)
 
 * `Python3`:
@@ -43,7 +43,21 @@ This project was developed in PyCharm using Python.
     3. Select System Interpreter (or set up a new Virtualenv)
     4. Select the newly installed Python executable path and click OK
 
-
+* `Virtual Environment (venv)`:
+  Open your terminal and run:
+  ```shell
+  cd path/to/your/project
+  ```
+  This moves into your project directory
+  ```shell
+  python3 -m venv venv
+  ```
+  (Note: If you get an error on Ubuntu/Debian like No module named venv, install it first via system terminal: sudo apt install python3-venv)
+  
+  To activate:
+  ```shell
+  source venv/bin/activate
+  ```
 * `LiME (Line Models and Extraction)`:
     Open your terminal and run:
     ```shell
@@ -75,6 +89,16 @@ This project was developed in PyCharm using Python.
     ```shell
     pip install matplotlib
     ```
+
+## Producing Results
+> **_NOTE:_** Since this project relies on private data unavailable to the public, accurate results will not be reproductable
+
+The results produced by this project (with the proper data) are in the form of plots. To generate these plots, user must have matplotlibs
+installed with proper syntax knowledge. To create the final plot (the histogram), you have to collect the data from the following
+scripts:
+* Wavelength_calc.py: Measures each line emission and collects data for the ratio
+* ratio_histo_calc.py: Plots the final histogram (the main result). Includes, redshift, error bars, and shaded regions
+
 
 ## Data
 The 1D extractions used in this work are courtesy of the OCEANS collaboration. The OCEANS program (program ID 8410, PI Raymond Simons)
