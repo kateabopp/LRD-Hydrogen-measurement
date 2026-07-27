@@ -45,17 +45,17 @@ for file_address in glob.glob(data_folder + '*.fits'):
     spec.fit.continuum(degree_list=[3, 6, 6], emis_threshold=[3, 2, 1.5], plot_steps=True, log_scale=True)
     candidate_lines = spec.retrieve.lines_frame()
     matched_lines = spec.infer.peaks_troughs(candidate_lines, emission_type=True, sigma_threshold=3, plot_steps=True, log_scale=True)
-    spec.fit.bands('H1_4340A_p-g_s-emi', cont_source='adjacent')
+    #spec.fit.bands('H1_4340A_p-g_s-emi', cont_source='adjacent')
 
-    #spec.fit.bands('O3_4363A', cont_source='adjacent')
+    spec.fit.bands('O3_4363A', cont_source='adjacent')
 
     try:
-        profile_flux_gamma = spec.frame.loc[['H1_4340A_p-g_s-emi'], ['profile_flux']].iloc[0, 0]
-        #profile_flux_oxy = spec.frame.loc[['O3_4363A'], ['profile_flux']].iloc[0, 0]
-        profile_flux_gamma_log = np.log10(profile_flux_gamma)
-        hg_ratio.append(profile_flux_gamma_log)
-        hg_ratio =np.array(hg_ratio)
-        print(profile_flux_gamma_log)
+        #profile_flux_gamma = spec.frame.loc[['H1_4340A_p-g_s-emi'], ['profile_flux']].iloc[0, 0]
+        profile_flux_oxy = spec.frame.loc[['O3_4363A'], ['profile_flux']].iloc[0, 0]
+        #profile_flux_gamma_log = np.log10(profile_flux_gamma)
+        #hg_ratio.append(profile_flux_gamma_log)
+        #hg_ratio =np.array(hg_ratio)
+        #print(profile_flux_gamma_log)
         #print(profile_flux_oxy)
         #ratio = profile_flux_oxy / profile_flux_gamma
         #log_ratios = np.log10(ratio)
