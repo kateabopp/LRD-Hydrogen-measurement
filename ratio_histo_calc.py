@@ -116,7 +116,7 @@ for gal_id, data in target_data.items():
 
 # Labels
 plt.xlabel(r'$\log_{10}([\mathrm{OIII}] / \mathrm{Hg})$')
-plt.ylabel('Count')
+plt.yticks([])
 plt.legend(loc='upper right')
 
 plt.savefig('final_histogram.png', dpi=300)
