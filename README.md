@@ -23,6 +23,10 @@ calculate.
   This program measures the OIII line using LiME. It is not entirely necessary to the project unless you just want to see how LiME is measuring the emission.
   However, it does also print the measurements of both line emissions and finds the log ratio. it is not the main ratio calculation code.
 
+### alpha_ratio.py
+  This program plots the ratio of the H-alpha narrow and broad measurements found in https://arxiv.org/pdf/2606.00258. 
+  This plot is used to indentify and show two outlier LRDs as they are much farther away from the majority sample.
+
 ## Installation
 This project was developed in the Community Edition of PyCharm using Python.
 > **_NOTE:_** All the installations were done using the Terminal in Bash (pip)
