@@ -102,7 +102,8 @@ installed with proper syntax knowledge. To create the final plot (the histogram)
 scripts:
 * Wavelength_calc.py: Measures each line emission and collects data for the ratio
 * ratio_histo_calc.py: Plots the final histogram (the main result). Includes, redshift, error bars, and shaded regions
-
+* alpha_ratio.py: Plots relationship of narrow to broad measurements of H-alpha emission. Doesn't require specific data 
+  to run.
 
 ## Data
 The 1D extractions used in this work are courtesy of the OCEANS collaboration. The OCEANS program (program ID 8410, PI Raymond Simons)
