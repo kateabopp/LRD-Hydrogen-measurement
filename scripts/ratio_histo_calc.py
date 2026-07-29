@@ -119,6 +119,6 @@ plt.xlabel(r'$\log_{10}([\mathrm{OIII}] / \mathrm{Hg})$')
 plt.yticks([])
 plt.legend(loc='upper right')
 
-plt.savefig('in_paper/final_lineplot.png', dpi=300)
+plt.savefig('../in_paper/final_lineplot.png', dpi=300)
 plt.show()
 plt.close()

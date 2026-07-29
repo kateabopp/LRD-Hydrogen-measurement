@@ -35,5 +35,5 @@ plt.ylabel('Redshift (z)', fontsize=14)
 plt.legend()
 
 plt.show()
-plt.savefig('in_paper/H-alpha_ratio.png', dpi=300)
+plt.savefig('../in_paper/H-alpha_ratio.png', dpi=300)
 plt.close()

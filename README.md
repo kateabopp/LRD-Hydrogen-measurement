@@ -13,16 +13,12 @@ The goal is to figure out what Little Red Dots are by taking these measurements.
   using matplotlib's plt.hist() function. It also includes the error uncertainty calculations and plots them on the final histogram.
 ### Wavelength_calc.py
   This program measures the emissions lines of H-gamma and OIII. Using LiME, it incorporates the redshift for each individual file
-  and plots a spectra. Note that the measurements for H-gamma are far from accurate as the emission is too broad for LiME to accurately
-calculate.
+  and plots a spectra. Note that the most of the measurements for H-gamma and OIII are far from accurate as the emission is too broad for LiME to accurately
+  calculate.
 ### single_filter_code.py
   This program does multiple things. However, only some is actually important to the overall project. It plots individual spectra 
   for each of the files. The spectra in this program focuses on both the H-gamma and OIII emission. It highlights the specific area of the
   H-gamma emission in blue and the OIII emission in yellow.
-### lime_measuring.py
-  This program measures the OIII line using LiME. It is not entirely necessary to the project unless you just want to see how LiME is measuring the emission.
-  However, it does also print the measurements of both line emissions and finds the log ratio. it is not the main ratio calculation code.
-
 ### alpha_ratio.py
   This program plots the ratio of the H-alpha narrow and broad measurements found in https://arxiv.org/pdf/2606.00258. 
   This plot is used to indentify and show two outlier LRDs as they are much farther away from the majority sample.
