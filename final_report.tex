@@ -1,0 +1,301 @@
+\documentclass[twoside,twocolumn,10pt]{article}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{abstract}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{ragged2e}  % Provides the justifying command
+\usepackage{amssymb}  % For additional symbols
+\usepackage{parskip}  % Automatically handles paragraph spacing
+\usepackage{amsmath}  % For advanced math environments
+\usepackage{newtxtext}  % Times New Roman font
+\usepackage{booktabs}  % For improved table appearance
+\usepackage{array}     % For customizing table columns
+\usepackage{natbib}
+
+
+
+
+\setcounter{page}{1}
+
+% Define custom column types for better alignment and spacing
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % Left aligned column
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}   % Center aligned column
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}  % Right aligned column
+
+\usepackage[font=footnotesize, labelfont=bf, justification=raggedright, format=plain]{caption}
+
+\captionsetup[table]{
+    labelsep=period,               % Period after label for tables
+    justification=raggedright      % Ensure left alignment of captions
+}
+
+\captionsetup[figure]{
+    labelsep=period,               % Period after label for figures
+    justification=raggedright      % Ensure left alignment of captions
+}
+
+
+
+
+% Set page margins
+\geometry{
+    a4paper,
+    left=0.8in,
+    right=0.8in,
+    top=1in,
+    bottom=1in
+}
+
+% Increase space between columns
+\setlength{\columnsep}{15pt}
+
+% Define the centred abstract heading
+\renewcommand{\abstractname}{\hspace{1.3em}\textbf{Abstract}}
+
+\titleformat{\section}{\large\bfseries\uppercase}{\thesection.}{1em}{}
+
+\titleformat{\subsection}{\normalfont\bfseries\flushleft}{\thesubsection.}{1em}{}
+
+\titleformat{\subsubsection}{\normalfont\bfseries\itshape\flushleft}{\thesubsubsection}{1em}{}
+
+% Set font sizes for abstract
+\renewcommand{\abstractnamefont}{\normalfont\fontsize{14}{20}\bfseries}
+\renewcommand{\absnamepos}{flushleft}
+\renewcommand{\abstracttextfont}{\normalfont\fontsize{11}{13}\selectfont}
+
+% Keywords environment
+\newcommand{\keywordsname}{Keywords}
+\newenvironment{keywords}
+  {\par\noindent\hspace{2em}\textbf{\keywordsname:}}
+  {\par}
+
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\sloppy
+
+% Set up header and footer styles
+\pagestyle{fancy}
+\fancyhf{}  % Clear default header and footer
+
+
+% Footer: Page numbers only (on all pages except the first one)
+\fancyfoot[C]{\thepage}
+
+% First page custom header/footer
+\fancypagestyle{firstpage}{
+  \fancyhf{}  % Clear header and footer
+  \fancyhead[LO]{\small 2026}  % Left header for first page
+  \renewcommand{\headrulewidth}{0.4pt}  % Add header line
+  \renewcommand{\footrulewidth}{0.4pt}  % Add footer line
+}
+
+\title{\fontsize{16}{20}\selectfont\textbf{The Relationship Between the H$\gamma$/[OIII]$\lambda$4363 ratio in Little Red Dots
+}}
+\author{
+    \fontsize{12}{14}\selectfont
+    Kate Bopp
+    \fontsize{12}{14}\selectfont
+}
+\date{}
+
+\begin{document}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+% Change "Research Article" to the appropriate article type if needed
+% (e.g. Review Article, Short Communication).
+\vspace{-0.5cm}  % Adjust spacing as needed between header and "Research Article"
+\raggedright
+
+{\fontsize{11}{13}\selectfont{Research Article}}
+\vspace{-0.8cm}  % Adjust spacing between "Research Article" and title
+
+% Now, insert the title and the author information
+\maketitle
+
+\thispagestyle{firstpage} % Apply custom header/footer for first page
+\begin{abstract}
+\fontsize{12}{14}\selectfont
+\vspace{1em}
+{Little Red Dots (LRDs) represent a mysterious class of compact, extremely common objects in the high-redshift universe ($\sim z>4$) recently uncovered by the James Webb Space Telescope (JWST). Figuring out if their rest-optical light is powered by stellar light from a host galaxy or accreting supermassive black holes (Active Galactic Nuclei, or AGN) remains a central challenge. In this work, NIRSpec spectra of a sample of LRDs are analyzed by examining the hydrogen Balmer emission line $\text{H}\gamma \lambda 4340$ and the nearby $[\text{O III}] \lambda 4363$ emission line. Using the software package \texttt{LiME}, line fluxes for $[\text{O III}]/\text{H}\gamma$ flux ratios were isolated and measured. Taking the logarithm ($\log_{10}([\text{O III}]/\text{H}\gamma)$) accommodated analysis of order-of-magnitude variations across the sample, enabling the construction of a distribution line plot. Standard error propagations were applied to report for measurement uncertainties.  Because these two emission features are separated by only $\sim 22\text{ \AA}$ in rest-frame wavelength, this ratio serves as a dust-insensitive probe of local conditions. By comparing the calculated log ratios against the high-redshift emission-line diagnostic boundaries established in \citet{Backhaus2025}, each target was categorized into broad-line active galactic nuclei (BLAGN), star-forming (SF), or composite regions. These findings helped to identify the primary power source of LRD spectra as one target displays BLAGN signatures while the other aligns with SF to BLAGN ranges, demonstrating the diverse power sources within the LRD population.
+
+
+% Citing for support for a sentence (It has been demonstrated by previous studies that x=y \citep{Davis2026}
+
+
+% Citing a paper directly (Davis 2026 showed that x=y) \citet{Davis2026}
+
+}
+
+
+
+\end{abstract}
+
+\vspace{1cm}
+\end{@twocolumnfalse}
+]
+\section{Introduction}
+\fontsize{12}{14}\selectfont
+Little Red Dots (LRDs) are a class of highly compact astronomical objects with v-shaped energy distributions \citep{Davis2026} discovered by the James Webb Space Telescope (JWST) in the early universe $\sim z>4$. Fundamental questions arose about the underlying power source of these unusual objects. Are they powered primarily by intense star formation, Active Galactic Nuclei (AGN), or a combination of both? To investigate the origin of these  emissions, this project analyzes key rest-frame emission lines: the hydrogen Balmer line $\text{H}\gamma$ ($\lambda_{\text{rest}} = 4340\text{ \AA}$) and the collisionally excited oxygen line $[\text{O III}]$ ($\lambda_{\text{rest}} = 4363.2\text{ \AA}$). Balmer emission lines occur when electrons in hydrogen atoms transition down to the second orbital shell ($n=2$), while $[\text{O III}] \lambda 4363$ is a line sensitive to electron collisional excitation. A major advantage of evaluating the $[\text{O III}]/\text{H}\gamma$ ratio is proximity. Because the two lines are separated by only $\sim 22\text{ \AA}$, interstellar dust affects both wavelengths nearly identically. Therefore, the observed flux ratio provides a dust-insensitive direct measure of gas excitation conditions without requiring complex reddening corrections.\textit{
+}
+
+
+  
+
+\section{Methodology and Data}
+This study utilizes spectroscopic data from 10 unique Little Red Dots identified by the Cosmic Evolution Early Release Science (CEERS) survey and observed with follow-up spectroscopy by the Observing Cosmic Evolution
+Among Nascent Systems (OCEANS) survey [GO-8410, PI: R.C. Simons] \citep{Finkelstein2025}. The data were provided as multi-extension Flexible Image Transport System (FITS) files containing reduced 1D JWST/NIRSpec spectra. Redshift values ($z > 3$) and wavelength arrays were extracted from these FITS headers to perform rest-frame conversions and line profile fitting. 
+\fontsize{12}{14}\selectfont
+
+\subsection{Standout LRDs}
+\fontsize{12}{14}\selectfont
+Although the initial dataset from the CEERS survey contained 10 unique LRD sources, this study focuses specifically on a subset of two targets. These two sources were prioritized because they exhibit remarkably narrow emission line profiles and yielded exceptionally clean, robust line fittings within \texttt{LiME}, allowing for high-precision flux and ratio measurements.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{LimeMeasureO3.png}
+\caption{Measurement that \texttt{LiME} took of the [OIII]$\lambda$4363 emission line. Notice how \texttt{LiME} fit the narrow emission very well, generating an accurate data result.}
+\label{fig:Measurement}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{Halpha_ratio.png}
+\caption{Systemic redshift ($z$) as a function of the H$\alpha$ narrow to broad flux ratio ($F_{\text{narrow}} / F_{\text{broad}}$) were calculated in the above figure. While the majority of the samples ($8/10$ LRDs) exhibit dominant broad-line emission ($F_{\text{narrow}} / F_{\text{broad}} < 0.75$), there are two outlier sources. Source IDs 169045 and 1794 demonstrate notably high narrow line ratios ($F_{\text{narrow}} / F_{\text{broad}} \ge 1.0$).}
+\label{fig:Measurement}
+\end{figure}
+
+To evaluate the relative contribution of broad versus narrow emission components, ratios of H$\alpha$ narrow-to-broad flux ($F_{\text{narrow}} / F_{\text{broad}}$) were calculated using data from \citet{Davis2026} and plotted against systemic redshift ($z$). As shown in Figure 2, the majority of the sample ($n = 8$) clusters at flux ratios below $0.75$ across $z \approx 3.8 - 6.7$. However, two sources; IDs 169045 ($z = 5.239$) and 1794 ($z = 3.681$) are distinctly different from the majority population, displaying narrow line fluxes that equal or exceed their broad line counterparts ($F_{\text{narrow}} / F_{\text{broad}} = 1.00$ and $1.39$, respectively).
+
+\subsection{Visualizing the Spectra}
+\fontsize{12}{14}\selectfont
+Spectra were visualized by mapping the wavelength array ($\mu\text{m}$) on the x-axis to the flux (Janskys or $\text{Jy}$) on the y-axis. To accurately represent the physical width of the spectroscopic resolution elements without artificial interpolation, the data were plotted in \texttt{matplotlib} utilizing drawstyle='steps-mid' \citep{Hunter2007}.
+
+
+\subsection{Rest-frame Conversion and Line Extractions via \texttt{LiME} }
+\fontsize{12}{14}\selectfont
+Rest-frame wavelengths were converted to observed wavelengths ($\lambda_{\text{obs}}$) using the redshift (z) of each galaxy target:
+$$\lambda_{\text{obs}} = \lambda_{\text{rest}} \times (1 + z)$$
+
+The individual spectra and their corresponding redshifts from \citet{Davis2026} were loaded into the Line Models and Extraction (\texttt{LiME}) software package \citep{LiMe_paper}. Using the \texttt{LiME} spectral fitting package, the integrated line fluxes and standard errors were extracted for both $\mathrm{H}\gamma\ (\lambda 4340\text{Å})$ and $[\mathrm{O\,III}]\ (\lambda 4363\text{Å})$.
+
+
+%CAN DISPLAY AS ONE FIGURE
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{Plain_spectra.png}
+\includegraphics[width=0.5\textwidth]{H-gamma_emission.png}
+\includegraphics[width=0.5\textwidth]{OIII_emission.png}
+\caption{Plotted spectra from individual source encompassing many different line emissions. The specific $\text{H}\gamma$ emission (in blue) and the specific $\text{O III}$ emission (in yellow). The x-axis indicates the wavelength of the source. The y-axis indicates the flux, helping to define and show emissions}
+\label{fig:example-two}
+\end{figure}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{zoomed_in.png}
+\caption{The above figure displays the spectra from the same previous source mentioned (Figure 3). Zooming into the specific emission areas allows for closer inspection of where the emission is actually being identified and what line it is specifically marking.}
+\label{fig:example-three}
+\end{figure}
+
+
+\subsection{Deriving Flux Ratio and Logarithmic Transformation}
+\fontsize{12}{14}\selectfont
+For each successfully measured target, the raw flux ratio was computed:
+$$\text{Ratio} = \frac{\text{Flux}_{[\text{O III}]}}{\text{Flux}_{\text{H}\gamma}}$$
+
+Because emission line fluxes vary over several orders of magnitude across different galaxies, the base-10 logarithm of each valid ratio was calculated:
+$$y = \log_{10}( \frac{\text{Flux}_{[\text{O III}]}}{\text{Flux}_{\text{H}\gamma}})$$
+
+Taking the logarithm compresses the scale, making it much easier to compare values across the sample on a single distribution graph. To do this, the ratio $([\text{O III}]/\text{H}\gamma)$ was put into an array using np.array() (where you import \texttt{NumPy} as np) \citep{Harris2020}. From there, np.log10() was used on the ratio array to generate the logarithmic values, which is necessary for readability.
+
+\subsection{Line Plot Generation and Classification}
+\fontsize{12}{14}\selectfont
+The logarithmic ratio values $\log_{10}([\text{O III}]/\text{H}\gamma)$ were plotted as vertical lines onto the distribution line plot in Figure 5 to visualize the range of excitation states across the dataset. The calculated $\log_{10}([\text{O III}]/\text{H}\gamma)$ ratios were then mapped against the ranges given in Table 1 established by Backhaus et al. (2025). By comparing each target's logarithmic ratio to these thresholds, individual targets were classified into one of three physical categories:
+
+Broad-Line AGN (BLAGN) Region: High-excitation region. Star-Forming (SF) Region: Lower-excitation region. Composite Region: Intermediate excitation region where star formation and weak/obscured AGN activity overlap.
+
+\textit{
+}
+
+
+\section{Results and Discussion}
+
+\subsection{Graphical Analysis}
+\fontsize{12}{14}\selectfont
+Because $\text{H}\gamma$ and $[\text{O III}]$ are virtually adjacent in wavelength ($\Delta \lambda \approx 22\text{ \AA}$), dust extinction is negligible. As a result, variations in $\log_{10}([\text{O III}]/\text{H}\gamma)$ directly probe the underlying thermal and ionization properties of the gas. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{histogram.png}
+\caption{Line Plot showing the overlapping regions of the Star-Formation (SF), Composite, and BLAGN regions. The Composite region shades to the maximum of the SF region and to the minimum of the BLAGN region. The x-axis uses logarithmic compression to improve data readability.}
+\label{fig:example-three}
+\end{figure}
+
+\fontsize{12}{14}\selectfont
+The line plot in Figure 5 displays a flux and uncertainty analysis of emission line ratios for two specific sources of LRDs (s000169045, s000001794). Standard error propagation techniques are applied to derive the uncertainty on the logarithm of the line ratios $\log_{10}([\mathrm{O\,III}] / \mathrm{H}\gamma)$, and map these galaxy measurements across diagnostic optical classification boundaries. To quantify these uncertainties, first-order error propagation for the base-10 logarithm of a flux ratio was calculated. Let y be the base-10 logarithm of the flux ratio: 
+$$y = \log_{10}\left(\frac{F_{\text{[O III]}}}{F_{\text{H}\gamma}}\right)$$
+Using the logarithmic property $\log_{10}(x)=\frac{\ln(x)}{\ln(10)}$, rewrite $y$ as:
+$$y = \frac{1}{\ln(10)} \left( \ln(F_{\text{[O III]}}) - \ln(F_{\text{H}\gamma}) \right)$$
+Applying the general multivariate error propagation formula for independent variables:
+
+\textbf{Partial derivative with respect to $F_{\text{[O III]}}$:}
+$$\frac{\partial y}{\partial F_{\text{[O III]}}} = \frac{1}{\ln(10)} \cdot \frac{1}{F_{\text{[O III]}}}$$
+\textbf{Partial derivative with respect to $F_{\text{H}\gamma}$:}
+$$\frac{\partial y}{\partial F_{\text{H}\gamma}} = -\frac{1}{\ln(10)} \cdot \frac{1}{F_{\text{H}\gamma}}$$
+Squaring these derivatives and summing them in quadrature gives the final uncertainty equation:
+$$\sigma_y = \frac{1}{\ln(10)} \sqrt{ \left( \frac{\sigma_{[\text{O III}]}}{\text{Flux}_{[\text{O III}]}} \right)^2 + \left( \frac{\sigma_{\text{H}\gamma}}{\text{Flux}_{\text{H}\gamma}} \right)^2 }$$ where $\sigma_{[\text{O III}]}$ and $\sigma_{\text{H}\gamma}$ represent the $1\sigma$ standard errors on the integrated line fluxes extracted by \texttt{LiME}.
+
+\subsection{Comparing to \citet{Backhaus2025}}
+\fontsize{12}{14}\selectfont
+    BLAGN Target Grouping: Targets with high $\log_{10}([\text{O III}]/\text{H}\gamma)$ ratios land above the \citet{Backhaus2025} AGN classification threshold. This placement confirms the presence of intense, hard radiation fields powered by accreting supermassive black holes. Star-Forming (SF) Grouping: Targets falling into the lower ratio regime align with the star-forming galaxy baseline, indicating that their emission can be explained by young, massive starbursts without requiring a dominant central AGNs. Composite Targets: Targets situated near the diagnostic boundary lines fall into the composite region, suggesting systems undergoing co-evolution black hole growth and strong star formation.
+
+\textit{
+}
+
+
+\begin{table}[htbp]
+    \centering
+    \title{Logarithmic Ratios}
+    \label{tab:sample_table}
+  
+  \begin{tabular}{|c|c|}
+    \hline
+    \textbf{} & \textbf{Log Ratios} \\ \hline
+    \textbf{SF Region} & (-1.6484, -0.3789) \\ \hline
+    \textbf{Composite Region} & (-0.4393, -0.3789) \\ \hline
+    \textbf{BLAGN Region} & (-0.4393, -0.2576) \\ \hline
+  \end{tabular}
+  
+\vspace{2mm} % Adds a slight space between table and caption
+    \caption {This table shows the calculated $\log_{10}([\text{O III}]/\text{H}\gamma)$ values over each region. These ratios were used to shade the line plot over the respective regions. The data for these calculations were found in \citet{Backhaus2025}}
+\end{table}
+
+\section{Conclusion}
+
+By using multi-line fitting with \texttt{LiME}, the $\text{H}\gamma$ and $[\text{O III}] \lambda 4363$ emission line fluxes were extracted across a sample of JWST-observed LRDs by the OCEANS program. By transforming the flux ratios into logarithmic space $\log_{10}([\text{O III}]/\text{H}\gamma)$ and visualizing their distribution through a line plot, a dust-insensitive probe of gas temperature and excitation was performed.
+Comparing these ratios with the diagnostic boundaries established by \citet{Backhaus2025} allowed classification of the target sample into BLAGN, star-forming, and composite regions. These findings demonstrate that LRDs are not a homogeneous population, but rather encompass systems ranging from starburst-dominated galaxies to active, black hole-powered nuclei. Understanding these distinct excitation regions helps explain how supermassive black holes and their host galaxies evolved during the first billion years of the universe.\textit{
+}
+
+
+%%%This project allowed me to obtain a deeper understanding of our universe. It truly made me realize just how much we don't know about space, and how interesting it is to take steps to solve the mysteries. 
+%%%It would be exciting to continue this research later on in the future. I believe it would be interesting to dive deeper into black holes themselves and to figure out how they really work and how they distort the things around them. 
+%%%Moving away from the astronomy side of things, something potentially interesting to me would be to research how we can reduce our carbon footprint and pollution on our planet. Perhaps it will be expanding renewable energy like solar panels, or developing new solid state batteries that are more efficient and cheaper to produce.
+
+\section{Acknowledgments}
+\fontsize{11}{13}\selectfont
+
+{I am incredibly grateful to my mentor, Kelcey Davis, for her immense support and guidance throughout this project. Her mentorship was extremely important to the success of this work, and I couldn't have done it without her.
+}
+
+
+\onecolumn % Switches the layout from 2 columns to 1 column
+
+\bibliography{references}{}
+\bibliographystyle{aasjournalv7}
+
+
+\end{document}
