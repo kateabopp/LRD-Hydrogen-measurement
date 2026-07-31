@@ -101,6 +101,14 @@ scripts:
 * alpha_ratio.py: Plots relationship of narrow to broad measurements of H-alpha emission. Doesn't require specific data 
   to run.
 * single_filter_code.py: Plots jagged red spectra of the sources. Highlights the emissions.
+* To generate the documents
+  ```shell
+  sudo apt update && sudo apt install texlive-full
+  
+  pdflatex docs/KateBopp_GammaOII_slides.tex
+
+  pdflatex docs/KateBopp_GammaOII_report.tex 
+  ```
 
 ## Data
 The 1D extractions used in this work are courtesy of the OCEANS collaboration. The OCEANS program (program ID 8410, PI Raymond Simons)
