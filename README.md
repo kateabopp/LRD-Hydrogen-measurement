@@ -105,8 +105,10 @@ scripts:
   ```shell
   sudo apt update && sudo apt install texlive-full
   
+  cd final_products
   pdflatex docs/KateBopp_GammaOII_slides.tex
 
+  cd final_products
   pdflatex docs/KateBopp_GammaOII_report.tex 
   ```
 
